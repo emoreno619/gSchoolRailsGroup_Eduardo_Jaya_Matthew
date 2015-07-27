@@ -2,6 +2,19 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # root 'static_pages#map'
+
+ 
+ 
+  resources :users do
+    resources :locations
+    resources :foods
+  end
+ 
+
+ resources :locations
+ resources :foods
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
