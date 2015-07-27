@@ -18,5 +18,8 @@ u2.locations << l2
 f1 = Food.create(name:'Happy Cheese', gluten_free:false, vegan:true, image_url:'http://www.addictedtosaving.com/wp-content/uploads/2012/05/free85.jpg')
 f2 = Food.create(name:'Meat of Sadness', gluten_free:true, vegan:false, image_url:'http://previews.123rf.com/images/artenot/artenot1111/artenot111100141/11168758-funny-cartoon-cow-Stock-Vector-cow-crying-sad.jpg')
 
+l1.foods << f1
+l2.foods << f2
+
 u1.foods << f1
 u2.foods << f2
