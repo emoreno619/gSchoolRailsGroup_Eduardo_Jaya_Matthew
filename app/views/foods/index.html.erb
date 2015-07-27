@@ -1,2 +1,22 @@
-<h1>Foods#index</h1>
-<p>Find me in app/views/foods/index.html.erb</p>
+<h1>THE GREATEST FOOD INDEX<h1>
+	<% if @user_food %>
+	    <p><% @user_food.each do |food| %></p>
+
+	    <p><%= food.name %></p>
+	    <p><%= food.gluten_free %></p>
+	    <p><%= food.vegan %></p>
+	    <p><%= food.image_url%></p>
+	    <p><%= food.vegan %></p>
+	    <% end %>
+
+	<% else %>
+	    <p><% @foods.each do |food| %></p>
+
+	    <p><%= food.name %></p>
+	    <p><%= food.gluten_free %></p>
+	    <p><%= food.vegan %></p>
+	    <p><%= food.image_url %></p>
+	    <p><%= food.vegan %></p>
+	    <% end %>
+	<% end %> 
+<%= link_to "Home", locations_path %>

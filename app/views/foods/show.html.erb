@@ -1,2 +1,11 @@
 <h1>Foods#show</h1>
-<p>Find me in app/views/foods/show.html.erb</p>
+
+<% if @food %>
+	    <p><%= @food.name %></p>
+	    <p><%= @food.gluten_free %></p>
+	    <p><%= @food.vegan %></p>
+	    <p><%= @food.image_url%></p>
+
+<% else %>
+	<p>You don't belong here either<p>
+<% end %>

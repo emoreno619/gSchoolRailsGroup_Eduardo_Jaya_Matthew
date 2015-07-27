@@ -1,2 +1,21 @@
 <h1>Foods#new</h1>
-<p>Find me in app/views/foods/new.html.erb</p>
+
+<% if @food %>
+	<%= form_for @food do |f| %>
+	    <%= f.label "Name" %>
+	    <%= f.text_field :name %><br />
+	    <%= f.radio_button :gluten_free, true %>
+		<%= f.label :gluten_free_true, "Gluten-free" %><br />
+		<%= f.radio_button :gluten_free, false %>
+		<%= f.label :gluten_free_false, "Not gluten-free"%><br />
+		<%= f.radio_button :vegan, true %>
+		<%= f.label :vegan_true, "Vegan" %><br />
+		<%= f.radio_button :vegan, false %>
+		<%= f.label :vegan_false, "Not vegan"%><br />
+	    <%= f.label "Image Url" %>
+	    <%= f.text_field :image_url %><br />
+	    <%= f.submit "Add New Food!" %>
+	<% end %>
+<% else %>
+	<p>YOU DON'T BELONG HERE<p>
+<% end %>
