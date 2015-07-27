@@ -1,14 +1,10 @@
 class LocationsController < ApplicationController
-  # def index
-  # 	@locations = Location.all
-  # 	if params[:user_id]
-  # 		@locations.each do |location|
-  # 			if location.user.id
-  # 		end
-  # 	else
-  # 		blah
-  # 	end
-  # end
+  def index
+  	@locations = Location.all
+  	if params[:user_id]
+  		@u_locations = Location.where(user_id: params[:user_id])
+  	end
+  end
 
   def new
   end
