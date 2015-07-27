@@ -1,1 +1,22 @@
 <h1>locations index page OF DEATH</h1>
+<% if @u_locations %>
+	<p><% @u_locations.each do |location| %></p>
+
+	<p><%= location.name %></p>
+	<p><%= location.address %></p>
+	<p><%= location.phone %></p>
+	<p><%= location.gluten_free %></p>
+	<p><%= location.vegan %></p>
+	<% end %>
+
+<% else %>
+	<p><% @locations.each do |location| %></p>
+
+	<p><%= location.name %></p>
+	<p><%= location.address %></p>
+	<p><%= location.phone %></p>
+	<p><%= location.gluten_free %></p>
+	<p><%= location.vegan %></p>
+	<% end %>
+
+<% end %>
