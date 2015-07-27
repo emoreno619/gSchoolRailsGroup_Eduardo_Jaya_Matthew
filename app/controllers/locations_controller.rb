@@ -7,11 +7,35 @@ class LocationsController < ApplicationController
   end
 
   def new
+  	@location = Location.new
+
+  end
+
+  def create
+  	@location = Location.create(location_params)
+  	if @location.save
+  		redirect_to locations_path, flash: { success: "Location Added!" }
+  	else
+  		render new_location_path
+  	end
   end
 
   def show
+  	# if user id in params render page for location with edit
+  	#otherwise render page for location
+  		@location = Location.where(id: params[:id])[0]
   end
 
   def edit
   end
+
+  def destroy
+  end
+
+  private
+
+  def location_params
+  	params.require(:location).permit(:name, :address, :phone, :gluten_free, :vegan, :image_url, :user_id)
+  end
+
 end

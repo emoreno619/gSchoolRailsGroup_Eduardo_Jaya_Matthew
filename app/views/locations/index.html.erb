@@ -7,6 +7,7 @@
 	<p><%= location.phone %></p>
 	<p><%= location.gluten_free %></p>
 	<p><%= location.vegan %></p>
+	<p>*************************</p>
 	<% end %>
 
 <% else %>
@@ -17,6 +18,8 @@
 	<p><%= location.phone %></p>
 	<p><%= location.gluten_free %></p>
 	<p><%= location.vegan %></p>
-	<% end %>
+	<p>*************************</p>
 
+	<% end %>
+<%= link_to "Home", locations_path %>
 <% end %>

@@ -1,2 +1,16 @@
-<h1>Locations#new</h1>
-<p>Find me in app/views/locations/new.html.erb</p>
+<h1>new location OF TORMENT</h1>
+<%= form_for @location do |f| %>
+   <%= f.label "Name" %>
+   <%= f.text_field :name %><br />
+   <%= f.label "Address" %>
+   <%= f.text_field :address %><br />
+    <%= f.label "Phone" %>
+   <%= f.text_field :phone %><br />
+    <%= f.label "Gluten Free" %>
+   <%= f.text_field :gluten_free %><br />
+    <%= f.label "Vegan" %>
+   <%= f.text_field :vegan %><br />
+   <%= f.label "image_url" %>
+   <%= f.text_field :image_url %><br />
+   <%= f.submit%>
+<% end %>
