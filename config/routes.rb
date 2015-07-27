@@ -7,8 +7,8 @@ Rails.application.routes.draw do
  
  
   resources :users do
-    resources :locations, shallow: true
-    resources :foods, shallow: true
+    resources :locations
+    resources :foods
   end
  
 
