@@ -46,7 +46,11 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-
+  	if params[:user_id]
+  		@food = Food.where(id: params[:id])[0]
+  		@food.destroy
+  		redirect_to user_foods_path(:user_id), flash:{success:'Food successfully deleted!'}
+  	end
   end
 
   private
