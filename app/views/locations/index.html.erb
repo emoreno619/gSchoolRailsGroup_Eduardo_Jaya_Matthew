@@ -2,7 +2,7 @@
 <% if @u_locations %>
 	<p><% @u_locations.each do |location| %></p>
 
-	<p><%= location.name %></p>
+	<p><%= link_to location.name, location_path(location) %></p>
 	<p><%= location.address %></p>
 	<p><%= location.phone %></p>
 	<p><%= location.gluten_free %></p>
@@ -13,7 +13,7 @@
 <% else %>
 	<p><% @locations.each do |location| %></p>
 
-	<p><%= location.name %></p>
+	<p><%= link_to location.name, location_path(location) %></p>
 	<p><%= location.address %></p>
 	<p><%= location.phone %></p>
 	<p><%= location.gluten_free %></p>
