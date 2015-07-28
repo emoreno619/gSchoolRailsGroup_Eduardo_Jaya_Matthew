@@ -1,11 +1,15 @@
 <h1>Foods#show</h1>
 
-<% if @food %>
+	<% if @food %>
 	    <p><%= @food.name %></p>
 	    <p><%= @food.gluten_free %></p>
 	    <p><%= @food.vegan %></p>
 	    <p><%= @food.image_url%></p>
+	    <p><%= @food.vegan %></p>
 
-<% else %>
-	<p>You don't belong here either<p>
+	<% else %>
+	<p>You don't belong here</p>
+
 <% end %>
+
+
