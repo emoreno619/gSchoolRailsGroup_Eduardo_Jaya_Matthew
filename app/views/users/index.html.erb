@@ -13,7 +13,7 @@
 					<img src="<%= location.image_url %>" alt="">
 				</p>
 				<p>
-					Location name: <%= location.name %>
+					Location name: <a href='<%="/locations/" + location.id.to_s  %>'><%= location.name %></a>
 					Address: <%= location.address %>
 					Phone: <%= location.phone %>
 					Gluten Free? <%= location.gluten_free %>
