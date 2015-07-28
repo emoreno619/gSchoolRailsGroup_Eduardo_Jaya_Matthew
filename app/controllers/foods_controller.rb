@@ -24,9 +24,7 @@ class FoodsController < ApplicationController
   end
 
   def show
-  	if params[:user_id]
   		@food = Food.where(id: params[:id])[0]
-  	end
   end
 
   def edit

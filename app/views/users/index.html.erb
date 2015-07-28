@@ -1,2 +1,57 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>See all the Users</h1>
+
+<div>
+	<% @users.each do |user| %>
+		<div>
+
+			<h2><%= link_to user.email, user_path(user) %>'s Items</h2>
+				
+			<h3>Stores:</h3>
+			
+			<% user.locations.each do |location| %>
+				<p>
+					<img src="<%= location.image_url %>" alt="">
+				</p>
+				<p>
+					Location name: <a href='<%="/locations/" + location.id.to_s  %>'><%= location.name %></a>
+					Address: <%= location.address %>
+					Phone: <%= location.phone %>
+					Gluten Free? <%= location.gluten_free %>
+					Vegan? <%= location.vegan %>
+				</p>
+				<div>
+					<h4>Foods at this Location:</h4>
+					<%  location.foods.each do |food| %>
+						<p>
+							Food name: <%= link_to food.name, food_path(food)  %>
+							Gluten Free? <%= food.gluten_free  %>
+							Vegan? <%= food.vegan  %>
+							
+						</p>
+					<% end %>
+				</div>
+			<% end %>
+			
+			<h3>Foods:</h3>
+			<% user.foods.each do |food|%>
+				<p>
+					<img src="<%= food.image_url  %>">
+				</p>
+				<p>
+					Food name: <%= food.name  %>
+					Gluten Free? <%= food.gluten_free  %>
+					Vegan? <%= food.vegan  %>
+				</p>
+				<h4>Locations that carry this food:</h4>
+
+				<% food.locations.each do |aLocation| %>
+					<p>
+						Location name: <%= link_to aLocation.name, location_path(aLocation) %>
+						Address: <%= aLocation.address %>
+						Phone: <%= aLocation.phone %>
+					</p>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
