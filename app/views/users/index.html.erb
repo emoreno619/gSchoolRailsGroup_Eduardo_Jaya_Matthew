@@ -4,8 +4,8 @@
 	<% @users.each do |user| %>
 		<div>
 
-			<h2><%= user.email %>'s Items</h2>
-
+			<h2><%= link_to user.email, user_path(user) %>'s Items</h2>
+				
 			<h3>Stores:</h3>
 			
 			<% user.locations.each do |location| %>
@@ -23,7 +23,7 @@
 					<h4>Foods at this Location:</h4>
 					<%  location.foods.each do |food| %>
 						<p>
-							Food name: <%= food.name  %>
+							Food name: <%= link_to food.name, food_path(food)  %>
 							Gluten Free? <%= food.gluten_free  %>
 							Vegan? <%= food.vegan  %>
 							
@@ -46,7 +46,7 @@
 
 				<% food.locations.each do |aLocation| %>
 					<p>
-						Location name: <%= aLocation.name %>
+						Location name: <%= link_to aLocation.name, location_path(aLocation) %>
 						Address: <%= aLocation.address %>
 						Phone: <%= aLocation.phone %>
 					</p>
