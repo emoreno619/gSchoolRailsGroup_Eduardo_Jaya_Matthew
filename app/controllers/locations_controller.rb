@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  require 'typhoeus'
+
   def index
   	@locations = Location.all
   	if params[:user_id]
@@ -45,6 +47,25 @@ class LocationsController < ApplicationController
   	@location = Location.find_by_id params[:id]
   	@location.destroy
   	redirect_to locations_path, flash: {success: "#{@location.name} D E S T R O Y E D!"}
+  end
+
+  def search
+
+    keyword = params[:keyword]
+    location = params[:location]
+
+    if !location || location == ""
+      location = "San+Francisco"
+    end
+
+    if !keyword || keyword == ""
+      keyword = "food"
+    end
+
+    happycow = "http://www.happycow.net/gmaps/searchmap.php?distance=15&distanceType=mi&list[]=vegan&kw=" + keyword + "&address=" + location + "&lat=&lon="
+    res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
+    puts res.css('side_bar')
+    redirect_to locations_path
   end
 
   private

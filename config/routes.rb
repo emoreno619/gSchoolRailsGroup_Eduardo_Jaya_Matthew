@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+	post '/locations/search', to: 'locations#search'
 
   resources :users do
     resources :locations
