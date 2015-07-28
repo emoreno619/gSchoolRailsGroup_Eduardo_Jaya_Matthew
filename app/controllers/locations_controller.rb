@@ -62,9 +62,13 @@ class LocationsController < ApplicationController
       keyword = "food"
     end
 
-    happycow = "http://www.happycow.net/gmaps/searchmap.php?distance=15&distanceType=mi&list[]=vegan&kw=" + keyword + "&address=" + location + "&lat=&lon="
+    happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
     res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
-    puts res.css('side_bar')
+    
+    puts "LOOOOOOOOOK HERE " 
+    res.css(".search-results-item").each do |location|
+      puts location.css('a').first.text
+    end
     redirect_to locations_path
   end
 
