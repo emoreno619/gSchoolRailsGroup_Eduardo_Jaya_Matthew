@@ -13,9 +13,18 @@
        <h5>Gluten Free: <%= @location.gluten_free %></h5>
        <h5>Vegan: <%= @location.vegan %></h5>
 
+      <div class="caption col-sm-6 col-md-4">
+            <h4>
+                  <% @location.foods.each do |food| %>
+                        <%= link_to food.name, food_path(food) %>
+                        <img src="<%= food.image_url %>">
+                  <% end %>
+            </h4>
+      </div>
+
        <% if params[:user_id] %>
-       <%= link_to "Edit", edit_location_path(@location), class:"btn btn-primary", id: "edit_location_path" %>
-       <%= link_to "Explode", locations_path(@location), method: :delete, data:{alert:"are you sure?"} ,class:"btn btn-default" %>
+             <%= link_to "Edit", edit_location_path(@location), class:"btn btn-primary", id: "edit_location_path" %>
+             <%= link_to "Explode", locations_path(@location), method: :delete, data:{alert:"are you sure?"} ,class:"btn btn-default" %>
        <% end %>
  </div>
 </div>

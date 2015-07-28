@@ -4,9 +4,13 @@
 	    <p><%= @food.name %></p>
 	    <p><%= @food.gluten_free %></p>
 	    <p><%= @food.vegan %></p>
-	    <p><%= @food.image_url%></p>
-	    <p><%= @food.vegan %></p>
-
+	    <p><img src="<%= @food.image_url%>"></p>
+		<div>
+			Locations that carry this product:
+					<% @food.locations.each do |location| %>
+						<%= link_to location.name, location_path(location) %>
+					<% end %>
+		</div>
 	<% else %>
 	<p>You don't belong here</p>
 
