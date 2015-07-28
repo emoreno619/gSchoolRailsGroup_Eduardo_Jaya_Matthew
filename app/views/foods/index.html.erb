@@ -3,20 +3,18 @@
 	    <p><% @user_food.each do |food| %></p>
 
 	    <p><%= food.name %></p>
-	    <p><%= food.gluten_free %></p>
-	    <p><%= food.vegan %></p>
-	    <p><%= food.image_url%></p>
-	    <p><%= food.vegan %></p>
+	    <p>Gluten-free: <%= food.gluten_free %></p>
+	    <p>Vegan: <%= food.vegan %></p>
+	    <p><img src="<%= @food.image_url%>"></p>
 	    <% end %>
 
 	<% else %>
 	    <p><% @foods.each do |food| %></p>
 
 	    <p><%= food.name %></p>
-	    <p><%= food.gluten_free %></p>
-	    <p><%= food.vegan %></p>
-	    <p><%= food.image_url %></p>
-	    <p><%= food.vegan %></p>
+	    <p>Gluten-free: <%= food.gluten_free %></p>
+	    <p>Vegan:<%= food.vegan %></p>
+	    <p><img src="<%= @food.image_url%>"></p>
 	    <% end %>
 	<% end %> 
 <%= link_to "Home", locations_path %>
