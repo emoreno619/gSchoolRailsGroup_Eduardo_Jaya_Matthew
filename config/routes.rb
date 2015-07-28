@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/show'
-
-  get 'users/edit'
 
   resources :users do
     resources :locations
@@ -18,14 +10,14 @@ Rails.application.routes.draw do
  resources :foods
 
  #             Prefix Verb   URI Pattern                                  Controller#Action
- #     user_locations GET    /users/:user_id/locations(.:format)          locations#index
- #                    POST   /users/:user_id/locations(.:format)          locations#create
- #  new_user_location GET    /users/:user_id/locations/new(.:format)      locations#new
- # edit_user_location GET    /users/:user_id/locations/:id/edit(.:format) locations#edit
- #      user_location GET    /users/:user_id/locations/:id(.:format)      locations#show
- #                    PATCH  /users/:user_id/locations/:id(.:format)      locations#update
- #                    PUT    /users/:user_id/locations/:id(.:format)      locations#update
- #                    DELETE /users/:user_id/locations/:id(.:format)      locations#destroy
+ ##     user_locations GET    /users/:user_id/locations(.:format)          locations#index
+ ##                    POST   /users/:user_id/locations(.:format)          locations#create
+ ##  new_user_location GET    /users/:user_id/locations/new(.:format)      locations#new
+ ## edit_user_location GET    /users/:user_id/locations/:id/edit(.:format) locations#edit
+ ##      user_location GET    /users/:user_id/locations/:id(.:format)      locations#show
+ ##                    PATCH  /users/:user_id/locations/:id(.:format)      locations#update
+ ##                    PUT    /users/:user_id/locations/:id(.:format)      locations#update
+ ##                    DELETE /users/:user_id/locations/:id(.:format)      locations#destroy
  #         user_foods GET    /users/:user_id/foods(.:format)              foods#index
  #                    POST   /users/:user_id/foods(.:format)              foods#create
  #      new_user_food GET    /users/:user_id/foods/new(.:format)          foods#new
@@ -42,14 +34,14 @@ Rails.application.routes.draw do
  #                    PATCH  /users/:id(.:format)                         users#update
  #                    PUT    /users/:id(.:format)                         users#update
  #                    DELETE /users/:id(.:format)                         users#destroy
- #          locations GET    /locations(.:format)                         locations#index
- #                    POST   /locations(.:format)                         locations#create
- #       new_location GET    /locations/new(.:format)                     locations#new
- #      edit_location GET    /locations/:id/edit(.:format)                locations#edit
- #           location GET    /locations/:id(.:format)                     locations#show
- #                    PATCH  /locations/:id(.:format)                     locations#update
- #                    PUT    /locations/:id(.:format)                     locations#update
- #                    DELETE /locations/:id(.:format)                     locations#destroy
+ ##          locations GET    /locations(.:format)                         locations#index
+ ##                    POST   /locations(.:format)                         locations#create
+ ##       new_location GET    /locations/new(.:format)                     locations#new
+ ##      edit_location GET    /locations/:id/edit(.:format)                locations#edit
+ ##           location GET    /locations/:id(.:format)                     locations#show
+ ##                    PATCH  /locations/:id(.:format)                     locations#update
+ ##                    PUT    /locations/:id(.:format)                     locations#update
+ ##                    DELETE /locations/:id(.:format)                     locations#destroy
  #              foods GET    /foods(.:format)                             foods#index
  #                    POST   /foods(.:format)                             foods#create
  #           new_food GET    /foods/new(.:format)                         foods#new
