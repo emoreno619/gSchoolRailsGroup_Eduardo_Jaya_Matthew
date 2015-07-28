@@ -27,9 +27,24 @@ class LocationsController < ApplicationController
   end
 
   def edit
+  	@location = Location.where(id: params[:id])[0]
+  end
+
+  def update
+  	@location = Location.find_by_id params[:id]
+  	@location.update location_params
+  	if @location.save
+  		redirect_to locations_path, flash: {success: "#{@location.name} updated!"}
+  	else
+  		render :edit
+  	end
+
   end
 
   def destroy
+  	@location = Location.find_by_id params[:id]
+  	@location.destroy
+  	redirect_to locations_path, flash: {success: "#{@location.name} D E S T R O Y E D!"}
   end
 
   private

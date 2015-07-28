@@ -15,7 +15,7 @@
 
        <% if params[:user_id] %>
        <%= link_to "Edit", edit_location_path(@location), class:"btn btn-primary", id: "edit_location_path" %>
-       <%= link_to "Explode", @location, method: :delete, data:{alert:"are you sure?"} ,class:"btn btn-default" %>
+       <%= link_to "Explode", locations_path(@location), method: :delete, data:{alert:"are you sure?"} ,class:"btn btn-default" %>
        <% end %>
  </div>
 </div>
