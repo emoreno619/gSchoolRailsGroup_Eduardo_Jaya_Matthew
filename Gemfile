@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 
 gem 'nokogiri'
-
+gem 'selenium-webdriver', '~> 2.46.2'
 gem 'typhoeus'
 
 gem 'sidekiq'

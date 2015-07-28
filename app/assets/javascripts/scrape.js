@@ -1,7 +1,7 @@
 $(function(){
 	$('#searchForm').submit(function (e){
 		e.preventDefault();
-	
+		alert("I'm in scrape.js")
 		console.log($('#keyword').val())
 		searchQuery = {}
 		searchQuery.keyword = $('#keyword').val()
