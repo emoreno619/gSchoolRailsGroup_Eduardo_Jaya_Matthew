@@ -2,8 +2,8 @@
 
 	<% if @food %>
 	    <p><%= @food.name %></p>
-	    <p><%= @food.gluten_free %></p>
-	    <p><%= @food.vegan %></p>
+	    <p>Gluten-free: <%= @food.gluten_free %></p>
+	    <p>Vegan: <%= @food.vegan %></p>
 	    <p><img src="<%= @food.image_url%>"></p>
 		<div>
 			Locations that carry this product:
