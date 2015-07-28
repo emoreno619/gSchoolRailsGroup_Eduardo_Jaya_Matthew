@@ -37,8 +37,10 @@ class FoodsController < ApplicationController
 
   def update
   	if params[:user_id]
+  		@food = Food.find_by_id params[:id]
+  		@food.update food_params
   	  	if @food.update
-  			redirect_to user_foods_path(:user_id), flash:{success:'Food successfully updated!'}
+  			redirect_to user_foods_path, flash:{success:'Food successfully updated!'}
   		else
   			render :edit
   		end
