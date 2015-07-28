@@ -1,2 +1,23 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.email %>'s User Info Page</h1>
+
+<h2>Email:</h2>
+<h3><%=  @user.email %></h3>
+
+<h2>Locations added:</h2>
+<h3>
+	<% @user.locations.each do |location| %>
+			<%= link_to location.name, location_path(location) %>
+	<% end %>
+</h3>
+
+<h2>Food added:</h2>
+<h3>
+	<% @user.foods.each do |food| %>
+		<%= link_to food.name, food_path(food) %>
+	<% end %>
+</h3>
+
+<h2><%= link_to "Edit", user_path(@user) %></h2>
+<h2><%= link_to "Delete", user_path(@user), method: :destroy %></h2>
+
+
