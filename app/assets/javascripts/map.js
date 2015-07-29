@@ -47,6 +47,12 @@ $(function(){
 	var formData = {}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
+
+	function distanceBtwnPoints(me,loc) {
+	  // google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
+	   var fromMeToLoc = google.maps.geometry.spherical.computeDistanceBetween (me, loc);
+	   console.log(fromMeToLoc, "DISTANCE BTWN");
+	}
 	
 
 	function createMarker(place) {
@@ -89,6 +95,7 @@ $(function(){
 	   navigator.geolocation.getCurrentPosition(function (position) {
 	     console.log(position.coords.latitude, position.coords.longitude);
 	     myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+	     distanceBtwnPoints(myLatLong, sanFrancisco)
 	    if (markerAlready === false) {
 	     addMarkerUserLoc(myLatLong) 
 	     markerAlready = true
@@ -102,6 +109,7 @@ $(function(){
 	    $("#myLocation").children().text("Find Failed :("); 
 	    // $("#myLocation").removeClass('fade')
 	  }
+	  
 	}
 
 	$("#myLocation").click(function(){
@@ -112,11 +120,12 @@ $(function(){
 	}) // END FUNCTION
 
 	function addMarkerUserLoc(location) {
-	  // var image = '../images/marker-youAreHere.png';
+	  var image = "assets/marker-youAreHere.png"
+
 	  var marker = new google.maps.Marker({
 	    position: location,
 	    map: map,
-	    // icon: image,
+	    icon: image,
 	    animation: google.maps.Animation.DROP
 	  });
 	}
@@ -127,6 +136,8 @@ $(function(){
 	    $("#myLocation").children().css("color","blue")
 	    }, 100)
 	  // $("#myLocation").children().addClass('fade')
+
+
 
 	}
 
