@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
-  require 'typhoeus'
+  #require 'typhoeus'
+  #require 'selenium-webdriver'
 
   def index
   	@locations = Location.all
@@ -62,13 +63,58 @@ class LocationsController < ApplicationController
       keyword = "food"
     end
 
-    happycow = "http://www.happycow.net/gmaps/searchmap.php?distance=15&distanceType=mi&list[]=vegan&kw=" + keyword + "&address=" + location + "&lat=&lon="
+    ######### HAPPY COW SEARCH
+
+    happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
     res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
-    puts res.css('side_bar')
+
+    # puts "LOOOOOOOOOK HERE " 
+    res.css(".search-results-item").each do |location|
+      # puts location.css('a').first.text
+    end
+
+    ######## KINNIKINNICK SEARCH
+
+    kinn = "http://consumer.kinnikinnick.com/index.cfm/fuseaction/consumer.storefinder/searchterm/"+ location +"/fromSpotter/0" 
+    res = Nokogiri::HTML(Typhoeus.get(kinn).response_body)
+
+    puts "LOOOOOOOOOK HERE " 
+    puts res.css(".finderWrapper")
+
+
+    ######## SELENIUM SEARCHES
+
+    drive_em(location)
+
+
+
+
     redirect_to locations_path
   end
 
   private
+
+  def drive_em(location)
+    driver = Selenium::WebDriver.for :firefox
+    driver.get "http://udisglutenfree.com/store-locator/"
+
+    element = driver.find_element :id => "addressInput"
+    element.send_keys location
+    element.submit
+
+    
+    sleep 1
+
+    
+    # wait.until { driver.title.downcase.start_with? "cheese!" }
+
+    # puts "LOOOOOOOOOK HERE " 
+    element = driver.find_element :id => "map_sidebar"
+    # puts element.text
+
+    driver.quit
+    
+  end
 
   def location_params
   	params.require(:location).permit(:name, :address, :phone, :gluten_free, :vegan, :image_url, :user_id)
