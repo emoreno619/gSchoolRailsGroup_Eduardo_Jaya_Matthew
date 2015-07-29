@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_correct_user, only: [:show,:edit, :update, :destroy]
-  before_action :confirm_admin
+  before_action :confirm_admin, only: [:index, :edit, :update, :desrtroy]
 
   def index
   	@users = User.all

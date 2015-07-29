@@ -1,4 +1,5 @@
 class FoodsController < ApplicationController
+
   def index
   	@foods = Food.all
   	if params[:user_id]
@@ -35,7 +36,7 @@ class FoodsController < ApplicationController
 
   def update
   	if params[:user_id]
-  		@food = Food.find_by_id params[:id]
+  		@food = Food.where(id: params[:id])[0]
   		@food.update food_params
   	  	if @food.update
   			redirect_to user_foods_path, flash:{success:'Food successfully updated!'}
@@ -56,6 +57,10 @@ class FoodsController < ApplicationController
   private
   	def food_params
   		params.require(:food).permit(:name, :gluten_free, :vegan, :image_url)
+    end
+
+    def find_food
+      @food = Food.where(id: params[:id])[0]
     end
 
 end

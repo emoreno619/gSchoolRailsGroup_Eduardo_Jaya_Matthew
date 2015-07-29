@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
   #require 'typhoeus'
   #require 'selenium-webdriver'
 
+
   def index
   	@locations = Location.all
   	if params[:user_id]
@@ -63,29 +64,28 @@ class LocationsController < ApplicationController
       keyword = "food"
     end
 
+    result = Hash.new
+
     ######### HAPPY COW SEARCH
 
-    happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
-    res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
+    result[:vegan] = happy_search(location, keyword)
 
-    happyResult = Hash.new
-    # puts "LOOOOOOOOOK HERE " 
-    res.css(".search-results-item").each do |location|
-      puts location.css('a').first.text
-      if location.css('a').first.text != ""
-        temp = location.css('span')[2].children.first.text.strip
-        temp1 = temp.slice(0, temp.index(',')).strip
+    ######## KINNIKINNICK SEARCH
 
-        temp2 = temp.slice(temp.index(',')+1, temp.index(")")).strip.inspect
-        
-        temp = temp1 + temp2
-        
-        happyResult[location.css('a').first.text] = temp
-      end
-    end
+    result[:gluten_free] = kinn_search(location)
 
-    # puts happyResult
+    ######## SELENIUM SEARCHES
 
+    result[:udis] = drive_em(location)
+
+    render :json => {
+                      :result => result
+                    }
+  end
+
+  private
+
+  def kinn_search(location)
 
     ######## KINNIKINNICK SEARCH
 
@@ -109,19 +109,38 @@ class LocationsController < ApplicationController
         end
     end
 
-    # puts kinnResult
+    kinnResult
 
-    ######## SELENIUM SEARCHES
-
-    drive_em(location)
-
-
-
-
-    redirect_to locations_path
   end
 
-  private
+  def happy_search(location, keyword)
+
+    ### TODO: change location to lat and long to interpolate query string
+
+    ######### HAPPY COW SEARCH
+
+    happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
+    res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
+
+    happyResult = Hash.new
+    # puts "LOOOOOOOOOK HERE " 
+    res.css(".search-results-item").each do |location|
+      puts location.css('a').first.text
+      if location.css('a').first.text != ""
+        temp = location.css('span')[2].children.first.text.strip
+        temp1 = temp.slice(0, temp.index(',')).strip
+
+        temp2 = temp.slice(temp.index(',')+1, temp.index(")")).strip.inspect
+        
+        temp = temp1 + temp2
+        
+        happyResult[location.css('a').first.text] = temp
+      end
+    end
+
+    happyResult
+
+  end
 
   def drive_em(location)
     driver = Selenium::WebDriver.for :firefox
@@ -140,14 +159,19 @@ class LocationsController < ApplicationController
 
     # puts "LOOOOOOOOOK HERE " 
     element = driver.find_element :id => "map_sidebar"
-    puts element.text
+    res = element.text
 
     driver.quit
     
+    res
   end
 
   def location_params
   	params.require(:location).permit(:name, :address, :phone, :gluten_free, :vegan, :image_url, :user_id)
+  end
+
+  def find_location
+    @location = Location.find_by_id params[:id]
   end
 
 end
