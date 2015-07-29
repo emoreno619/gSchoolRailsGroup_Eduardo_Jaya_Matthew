@@ -82,7 +82,7 @@ $(function(){
 		initialize();
 		
 	})
-var markerAlready = false
+  var markerAlready = false
 	function getLocation() {
 	  if ("geolocation" in navigator) {
 	      changeButtonText();
@@ -92,20 +92,23 @@ var markerAlready = false
 	    if (markerAlready === false) {
 	     addMarkerUserLoc(myLatLong) 
 	     markerAlready = true
-	      $("#myLocation").val("Found You!");   
-	      $("#myLocation").removeClass('fade')
+	     $("#myLocation").children().css("color","black")
+	      $("#myLocation").children().text("Found You!");   
+	      // $("#myLocation").removeClass('fade')
 	    }
 	   });
 	  } else {
 	    // no native support; maybe try a fallback?
-	    $("#myLocation").val("Find Failed :(");   
-	    $("#myLocation").removeClass('fade')
+	    $("#myLocation").children().text("Find Failed :("); 
+	    // $("#myLocation").removeClass('fade')
 	  }
 	}
 
 	$("#myLocation").click(function(){
-	  // $("#myLocation").val("Finding You......")
-	  getLocation()  
+
+		if ($("#myLocation").children().text() !== "Found You!") {
+	  		getLocation()  
+	    }
 	}) // END FUNCTION
 
 	function addMarkerUserLoc(location) {
@@ -120,9 +123,10 @@ var markerAlready = false
 
 	function changeButtonText(){
 	  window.setTimeout(function() {
-	    $("#myLocation").val("Finding You.......");
+	    $("#myLocation").children().text("Finding You.......");
+	    $("#myLocation").children().css("color","blue")
 	    }, 100)
-	  $("#myLocation").addClass('fade')
+	  // $("#myLocation").children().addClass('fade')
 
 	}
 
