@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
+  root 'locations#index'
 	post '/locations/search', to: 'locations#search'
+  
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+  get '/login', to: 'users#login'
+  post '/login', to: 'users#attempt_login'
+  delete '/logout', to: 'users#logout'
+
 
   resources :users do
     resources :locations
