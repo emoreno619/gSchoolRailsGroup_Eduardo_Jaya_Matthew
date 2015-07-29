@@ -82,16 +82,19 @@ $(function(){
 		initialize();
 		
 	})
-
+var markerAlready = false
 	function getLocation() {
 	  if ("geolocation" in navigator) {
 	      changeButtonText();
 	   navigator.geolocation.getCurrentPosition(function (position) {
 	     console.log(position.coords.latitude, position.coords.longitude);
 	     myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+	    if (markerAlready === false) {
 	     addMarkerUserLoc(myLatLong) 
+	     markerAlready = true
 	      $("#myLocation").val("Found You!");   
 	      $("#myLocation").removeClass('fade')
+	    }
 	   });
 	  } else {
 	    // no native support; maybe try a fallback?
