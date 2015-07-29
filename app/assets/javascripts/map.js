@@ -82,6 +82,53 @@ $(function(){
 		initialize();
 		
 	})
+  var markerAlready = false
+	function getLocation() {
+	  if ("geolocation" in navigator) {
+	      changeButtonText();
+	   navigator.geolocation.getCurrentPosition(function (position) {
+	     console.log(position.coords.latitude, position.coords.longitude);
+	     myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+	    if (markerAlready === false) {
+	     addMarkerUserLoc(myLatLong) 
+	     markerAlready = true
+	     $("#myLocation").children().css("color","black")
+	      $("#myLocation").children().text("Found You!");   
+	      // $("#myLocation").removeClass('fade')
+	    }
+	   });
+	  } else {
+	    // no native support; maybe try a fallback?
+	    $("#myLocation").children().text("Find Failed :("); 
+	    // $("#myLocation").removeClass('fade')
+	  }
+	}
+
+	$("#myLocation").click(function(){
+
+		if ($("#myLocation").children().text() !== "Found You!") {
+	  		getLocation()  
+	    }
+	}) // END FUNCTION
+
+	function addMarkerUserLoc(location) {
+	  // var image = '../images/marker-youAreHere.png';
+	  var marker = new google.maps.Marker({
+	    position: location,
+	    map: map,
+	    // icon: image,
+	    animation: google.maps.Animation.DROP
+	  });
+	}
+
+	function changeButtonText(){
+	  window.setTimeout(function() {
+	    $("#myLocation").children().text("Finding You.......");
+	    $("#myLocation").children().css("color","blue")
+	    }, 100)
+	  // $("#myLocation").children().addClass('fade')
+
+	}
 
 	initialize();
 })

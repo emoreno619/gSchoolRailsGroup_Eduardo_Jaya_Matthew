@@ -4,15 +4,17 @@
 <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <script src=".../assets/javascripts/scrape.js"></script>
 <script src="../../assets/javascripts/map.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
 
 <style>
   html, body, #map-canvas {
     height: 75%;
-    width: 75%;
-    margin: 0;
+    width: 100%;
+    margin: auto auto;
     padding: 0;
   }
-
 </style>
 
 
@@ -70,3 +72,7 @@
 	</label>
 	<input type="submit" value="SEARCH!">
 </form>
+
+
+
+<input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
