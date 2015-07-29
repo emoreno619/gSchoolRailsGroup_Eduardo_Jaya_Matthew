@@ -1,33 +1,44 @@
 $(function(){
-	$('#searchForm').submit(function (e){
-		e.preventDefault();
+	// $('#searchForm').submit(function (e){
+	// 	e.preventDefault();
 		
-		console.log($('#keyword').val())
-		searchQuery = {}
-		searchQuery.keyword = $('#keyword').val()
-		searchQuery.location = $('#location').val()
+	// 	console.log($('#keyword').val())
+	// 	searchQuery = {}
+	// 	searchQuery.keyword = $('#keyword').val()
+	// 	searchQuery.location = $('#location').val()
 		
-		$.ajax({
-				  type: 'POST',
-				  url: '/locations/search',
-				  data: searchQuery,
-				  dataType: 'json'
-				}).done(function(datas) {
-					console.log(datas)
-				})
+	// 	$.ajax({
+	// 			  type: 'POST',
+	// 			  url: '/locations/search',
+	// 			  data: searchQuery,
+	// 			  dataType: 'json'
+	// 			}).done(function(datas) {
+	// 				console.log(datas)
+	// 			})
 
-	})
-	// $.ajax({
-	// 		  type: 'POST',
-	// 		  url: '/locations/search',
-	// 		  dataType: 'json'
-	// 		}).done(function(datas) {
+	// })
 
-	// 		})
+	var scrapeResult;
+
+	$.ajax({
+			  type: 'POST',
+			  url: '/locations/search',
+			  dataType: 'json'
+			}).done(function(datas) {
+				console.log(datas)
+				scrapeResult = datas.result
+			})
 
 	$('#gluten-event').change(function(){
-		console.log("TOGGLED ON")
+		
+		if ($('#gluten-event').parent().hasClass('off')){
+			$('div.aPlace').remove
+		} else {
+			scrapeResult.gluten_free.forEach(function(aPlace){
+				$('h1').append('<div class="aPlace">'+ aPlace +'</div>')
 
+			})
+		}
 	})
 
 });
