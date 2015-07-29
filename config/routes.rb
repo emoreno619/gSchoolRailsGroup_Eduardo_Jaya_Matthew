@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#attempt_login'
   delete '/logout', to: 'sessions#logout'
 
+  get '/admin', to:'admin#approve'
 
   resources :users do
     resources :locations
     resources :foods
   end
  
-
  resources :locations
  resources :foods
 
