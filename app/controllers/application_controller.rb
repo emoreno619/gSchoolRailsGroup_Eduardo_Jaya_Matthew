@@ -36,6 +36,6 @@ class ApplicationController < ActionController::Base
   # Defines @current_user if it is not already defined.
    @current_user ||= User.find_by_id(session[:user_id])
   end
-  helper_method :current_user #make it available in views (it will be available in all controllers as well
+  helper_method :current_user, :confirm_admin #make it available in views (it will be available in all controllers as well
 end
 

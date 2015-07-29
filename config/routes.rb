@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root 'locations#index'
 	post '/locations/search', to: 'locations#search'
   
-  get '/signup', to: 'users#new'
-  post '/signup', to: 'users#create'
-  get '/login', to: 'users#login'
-  post '/login', to: 'users#attempt_login'
-  delete '/logout', to: 'users#logout'
+  get '/signup', to: 'sessions#signup'
+  post '/signup', to: 'sessions#create'
+  get '/login', to: 'sessions#login'
+  post '/login', to: 'sessions#attempt_login'
+  delete '/logout', to: 'sessions#logout'
 
 
   resources :users do

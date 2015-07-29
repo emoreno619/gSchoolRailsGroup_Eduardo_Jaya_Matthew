@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
   #require 'typhoeus'
   #require 'selenium-webdriver'
 
+
   def index
   	@locations = Location.all
   	if params[:user_id]
@@ -148,6 +149,10 @@ class LocationsController < ApplicationController
 
   def location_params
   	params.require(:location).permit(:name, :address, :phone, :gluten_free, :vegan, :image_url, :user_id)
+  end
+
+  def find_location
+    @location = Location.find_by_id params[:id]
   end
 
 end
