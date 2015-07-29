@@ -105,12 +105,13 @@ class LocationsController < ApplicationController
     
     sleep 1
 
-    
+    # testing.....
+
     # wait.until { driver.title.downcase.start_with? "cheese!" }
 
     # puts "LOOOOOOOOOK HERE " 
     element = driver.find_element :id => "map_sidebar"
-    # puts element.text
+    puts element.text
 
     driver.quit
     
