@@ -109,11 +109,11 @@ class LocationsController < ApplicationController
         end
     end
 
-    puts kinnResult
+    # puts kinnResult
 
     ######## SELENIUM SEARCHES
 
-    # drive_em(location)
+    drive_em(location)
 
 
 
