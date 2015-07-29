@@ -1,0 +1,7 @@
+<%= form_for @user do |f| %>
+    <%= f.label :email, class: "col-sm-2" %>
+    <%= f.text_area :email, class: "form-control" %>
+    <%= f.label :password, class: "col-sm-2" %>
+    <%= f.text_area :password, class: "form-control" %> 
+    <%= f.submit class:"btn btn-primary" %>
+<% end %>
