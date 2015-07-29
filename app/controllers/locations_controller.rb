@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   require 'typhoeus'
-  require 'selenium-webdriver'
+  # require 'selenium-webdriver'
 
   def index
   	@locations = Location.all
