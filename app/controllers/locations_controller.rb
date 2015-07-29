@@ -68,23 +68,52 @@ class LocationsController < ApplicationController
     happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
     res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
 
+    happyResult = Hash.new
     # puts "LOOOOOOOOOK HERE " 
     res.css(".search-results-item").each do |location|
-      # puts location.css('a').first.text
+      puts location.css('a').first.text
+      if location.css('a').first.text != ""
+        temp = location.css('span')[2].children.first.text.strip
+        temp1 = temp.slice(0, temp.index(',')).strip
+
+        temp2 = temp.slice(temp.index(',')+1, temp.index(")")).strip.inspect
+        
+        temp = temp1 + temp2
+        
+        happyResult[location.css('a').first.text] = temp
+      end
     end
+
+    # puts happyResult
+
 
     ######## KINNIKINNICK SEARCH
 
     kinn = "http://consumer.kinnikinnick.com/index.cfm/fuseaction/consumer.storefinder/searchterm/"+ location +"/fromSpotter/0" 
     res = Nokogiri::HTML(Typhoeus.get(kinn).response_body)
 
-    puts "LOOOOOOOOOK HERE " 
-    puts res.css(".finderWrapper")
+    kinnResult = []
 
+    puts res.css(".finderWrapper").children[8].children.length
+    res.css(".finderWrapper").children[8].children.each do |location|
+        if location.name != "br"
+          location = location.text.strip
+          if location.index("|")
+            location1 = location.slice(0, location.index("|"))
+            location2 = location.slice(location.index("|"), location.length)
+            location2 = location2.slice(2, location2.length)
+            location2.gsub!("|", "")
+            location = location1 + "\n" + location2
+          end
+          kinnResult << location
+        end
+    end
+
+    puts kinnResult
 
     ######## SELENIUM SEARCHES
 
-    drive_em(location)
+    # drive_em(location)
 
 
 
