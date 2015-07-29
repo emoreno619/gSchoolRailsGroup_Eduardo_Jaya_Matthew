@@ -77,19 +77,20 @@ $(function(){
 	  });
 	}
 
-	$('#bestSearchForm').submit(function(e){
+	$('#navSearchForm').submit(function(e){
 		e.preventDefault();
 		// ids = []
 		// $('.aPlace').remove()
-		formData.name = $('#bestKeyword').val();
-		console.log(formData.name)
+		// formData.name = $('#bestKeyword').val();
+		// console.log(formData.name)
 		//need to create google.maps.LatLng object from city search to be stored
 		//request.location below and map.center
-		formData.city = $('#bestLocation').val();
+		formData.city = $('#searchedLocation').val();
 		
 		initialize();
 		
 	})
+
   var markerAlready = false
 	function getLocation() {
 	  if ("geolocation" in navigator) {
@@ -131,6 +132,56 @@ $(function(){
 	    animation: google.maps.Animation.DROP
 	  });
 	}
+
+	// function centerOnUserLocation(location) {
+	// 	if ("geolocation" in navigator) {
+	// 	    changeButtonText();
+	// 	 navigator.geolocation.getCurrentPosition(function (position) {
+	// 	   console.log(position.coords.latitude, position.coords.longitude);
+	// 	   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+	// 	   $$$ center map here
+	// 	 });
+	// 	} else {
+	// 	  // no native support; maybe try a fallback?
+	// 	  $("#myLocation").children().text("Find Failed :("); 
+	// 	  // $("#myLocation").removeClass('fade')
+	// 	}
+	
+
+	// 	if("geolocation" in navigator){
+	// 	      	console.log("GOT to geocoder")
+	// 	      	// change to make address the coordinates of the user, or make the geocoder = to the user address
+	// 	      	address = formData.city
+	// 	      	geocoder = new google.maps.Geocoder();
+	// 	      	geocoder.geocode( { 'address': address}, function(results, status) {
+	// 	      	      if (status == google.maps.GeocoderStatus.OK) {
+		      	        
+	// 	      	        location = results[0].geometry.location
+	// 	      	        console.log(location)
+	// 	      	        map.setCenter(results[0].geometry.location);
+
+	// 	      	        var request = {
+	// 	      	          location: location,
+	// 	      	          radius: '500',
+	// 	      	          query: formData.name
+	// 	      	        };
+
+	// 	      	        service = new google.maps.places.PlacesService(map);
+	// 	      	        service.textSearch(request, callback);
+	// 	      	        // var marker = new google.maps.Marker({
+	// 	      	        //     map: map,
+	// 	      	        //     position: results[0].geometry.location
+	// 	      	        // });
+	// 	      	      } else {
+	// 	      	        // alert("Geocode was not successful for the following reason: " + status);
+	// 	      	      }
+	// 	      	    });
+	// 	      } // END IF
+
+
+
+
+	// }
 
 	function changeButtonText(){
 	  window.setTimeout(function() {
