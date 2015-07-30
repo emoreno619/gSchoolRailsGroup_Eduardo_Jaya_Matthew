@@ -45,7 +45,7 @@ $(function(){
 		      	    });
 		      } // END IF
 
-	createMarker(sanFrancisco)
+	
 	centerOnUserLocation()
 
 	} // END FUNCTION
@@ -63,13 +63,24 @@ $(function(){
 	}
 	
 
-	function createMarker(place) {
-	  var image = "assets/marker-gf-web.png"
+	function createMarker(place, is_vegan) {
+	  var image;
+	  if (is_vegan)
+	  	image = "assets/marker-v-web.png"
+	  else
+	    image = "assets/marker-gf-web.png"
+
 	  var marker = new google.maps.Marker({
 	    map: map,
 	    icon: image,
 	    position: place
 	  });
+
+
+	  if (is_vegan)
+	  	veganPins.push(marker);
+	  else
+	  	glutenPins.push(marker);
 
 	  google.maps.event.addListener(marker, 'click', function() {
 	    var options = {
@@ -85,27 +96,29 @@ $(function(){
 	  });
 	}
 
-	function createMarkerV(place) {
-	  var image = "assets/marker-v-web.png"
-	  var marker = new google.maps.Marker({
-	    map: map,
-	    icon: image,
-	    position: place
-	  });
+	// function createMarkerV(place, is_vegan) {
+	//   var image = "assets/marker-v-web.png"
+	//   var marker = new google.maps.Marker({
+	//     map: map,
+	//     icon: image,
+	//     position: place
+	//   });
 
-	  google.maps.event.addListener(marker, 'click', function() {
-	    var options = {
-	    	map: map,
-	    	position: sanFrancisco, //place.geometry.location,
-	    	content: "IFFF YOUUURE GOINNG TOO SANNN FFRRSNNSXCOIIOOOOO"
-	    }
+	//   veganPins.push(marker);
 
-	    // var infowindow = new google.maps.InfoWindow(options);
+	//   google.maps.event.addListener(marker, 'click', function() {
+	//     var options = {
+	//     	map: map,
+	//     	position: sanFrancisco, //place.geometry.location,
+	//     	content: "IFFF YOUUURE GOINNG TOO SANNN FFRRSNNSXCOIIOOOOO"
+	//     }
 
-	    // infowindow.setContent(place.name);
-	    // infowindow.open(map, this);
-	  });
-	}
+	//     // var infowindow = new google.maps.InfoWindow(options);
+
+	//     // infowindow.setContent(place.name);
+	//     // infowindow.open(map, this);
+	//   });
+	// }
 
 
 
@@ -216,10 +229,18 @@ $(function(){
 		if ($('#gluten-event').parent().hasClass('off')){
 			$('.aGlutenFreePlace').remove()
 			//remove pins
+
+			for (var i = 0; i < glutenPins.length; i++) {
+			    glutenPins[i].setMap(null);
+			  }
+
+			glutenPins = []
+
 		} else {
 			scrapeResult.gluten_free.forEach(function(aPlace){
 				// console.log(aPlace)
-				locationLatLng = geoCode(aPlace)
+				locationLatLng = geoCode(aPlace, false)
+				
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
@@ -235,11 +256,18 @@ $(function(){
 		if ($('#vegan-event').parent().hasClass('off')){
 			$('.aVeganPlace').remove()
 			//remove pins
+			console.log(veganPins)
+
+			for (var i = 0; i < veganPins.length; i++) {
+			    veganPins[i].setMap(null);
+			  }
+
+			veganPins = []
 		} else {
 			scrapeResult.vegan.forEach(function(aPlace){
 				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm,"");
 				console.log(aPlace,"*********APLACE**********");
-				locationLatLng = geoCodeV(aPlace)
+				locationLatLng = geoCode(aPlace, true)
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
@@ -250,26 +278,25 @@ $(function(){
 				// createMarker(locationLatLng)
 
 				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
-
 			})
 		}
 	})
 
-	function geoCode(address){
-		geocoder = new google.maps.Geocoder();
-		geocoder.geocode( { 'address': address}, function(results, status) {
-		      if (status == google.maps.GeocoderStatus.OK) {
+	// function geoCode(address){
+	// 	geocoder = new google.maps.Geocoder();
+	// 	geocoder.geocode( { 'address': address}, function(results, status) {
+	// 	      if (status == google.maps.GeocoderStatus.OK) {
 		        
-		        location = results[0].geometry.location
-		        console.log(location)
-		        // map.setCenter(results[0].geometry.location);
+	// 	        location = results[0].geometry.location
+	// 	        console.log(location)
+	// 	        // map.setCenter(results[0].geometry.location);
 
-		        createMarker(location)
-			  }
-  		})
-  	}
+	// 	        createMarker(location)
+	// 		  }
+ //  		})
+ //  	}
 
-	function geoCodeV(address){
+	function geoCode(address, is_vegan){
 		console.log(address,"*********ADDRESS**********");
 
 		geocoder = new google.maps.Geocoder();
@@ -280,12 +307,13 @@ $(function(){
 		        console.log(location)
 		        // map.setCenter(results[0].geometry.location);
 
-		        createMarkerV(location)
+		        createMarker(location, is_vegan)
 			  }
   		})
   	} 	  	
 
-	
+	var veganPins = [];
+	var glutenPins = [];
 
 	var scrapeResult;
 
