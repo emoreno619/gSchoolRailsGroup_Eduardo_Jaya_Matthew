@@ -10,6 +10,10 @@
 	color:#eb9316;
 }
 
+.success {
+	color:#4cae4c;
+}
+
 #appendPlaces {
 	overflow:scroll;
 	height:500px;
@@ -25,4 +29,9 @@
 
 .center {
 	text-align: center;
+}
+
+#logo {
+	font-family: 'Sansita One', cursive;
+	font-size: 60px;
 }
