@@ -63,10 +63,13 @@ $(function(){
 	  // google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
 	   var fromMeToLoc = google.maps.geometry.spherical.computeDistanceBetween (me, loc);
 	   // console.log(fromMeToLoc, "DISTANCE BTWN");
+	   return fromMeToLoc
 	}
 	
 
 	function createMarker(place, is_vegan) {
+	  if (is_vegan)
+	  	console.log("vegan!");
 	  var image;
 	  if (is_vegan)
 	  	image = "assets/marker-v-web.png"
@@ -80,10 +83,13 @@ $(function(){
 	  });
 
 
-	  if (is_vegan)
+	  if (is_vegan) {
 	  	veganPins.push(marker);
-	  else
+	  	console.log("pushing vegan pins")
+	  } else {
 	  	glutenPins.push(marker);
+	  	console.log("pushing GF pins")
+	  }
 
 	  // console.log("VEGAN PINS " + veganPins)
 	  // console.log("GLUTEN PINS " + glutenPins)
@@ -190,6 +196,7 @@ $(function(){
 		   // console.log(position.coords.latitude, position.coords.longitude, "SHAKE IT BABY");
 		   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 		   map.setCenter(myLatLong);
+
 		 });
 	} 
 
@@ -322,6 +329,7 @@ $(function(){
 	// 		  }
  //  		})
  //  	}
+ distanceObj = {};
 
 	function geoCode(address, is_vegan){
 		// console.log(address,"*********ADDRESS**********");
@@ -333,8 +341,12 @@ $(function(){
 		        location = results[0].geometry.location
 		        // console.log(location)
 		        // map.setCenter(results[0].geometry.location);
+		        // console.log(myLatLong,"*********MYLATLONG**********");
 
+		        console.log(distanceBtwnPoints(myLatLong,location))
 		        createMarker(location, is_vegan)
+			  } else {
+			  	setTimeout(function() { geoCode(address, is_vegan);}, 1000);
 			  }
   		})
   	} 	  	
@@ -358,10 +370,10 @@ $(function(){
 					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
 					cutoff = aPlace.search(/\d/)
 					placeAddress = aPlace.slice(cutoff, aPlace.length)
-					console.log(placeAddress,"*********PLACEADDRESS**********");
+					// console.log(placeAddress,"*********PLACEADDRESS**********");
 
 					geoCode(placeAddress, false)
-					console.log(aPlace)
+					// console.log(aPlace)
 				})
 
 				scrapeResult.vegan.forEach(function(aPlace){
