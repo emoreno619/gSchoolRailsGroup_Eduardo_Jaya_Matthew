@@ -243,12 +243,9 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-<<<<<<< HEAD
-				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
-=======
 
-				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
->>>>>>> fc303218ccf6c5e08ce71d362b6b9e2ff1104546
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
+
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
