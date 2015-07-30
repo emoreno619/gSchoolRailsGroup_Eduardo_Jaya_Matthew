@@ -64,15 +64,34 @@ $(function(){
 	
 
 	function createMarker(place) {
-		console.log(place,"*********PLACE**********");
-
+	  var image = "assets/marker-gf-web.png"
 	  var marker = new google.maps.Marker({
 	    map: map,
+	    icon: image,
 	    position: place
 	  });
 
-	 
+	  google.maps.event.addListener(marker, 'click', function() {
+	    var options = {
+	    	map: map,
+	    	position: sanFrancisco, //place.geometry.location,
+	    	content: "IFFF YOUUURE GOINNG TOO SANNN FFRRSNNSXCOIIOOOOO"
+	    }
 
+	    // var infowindow = new google.maps.InfoWindow(options);
+
+	    // infowindow.setContent(place.name);
+	    // infowindow.open(map, this);
+	  });
+	}
+
+	function createMarkerV(place) {
+	  var image = "assets/marker-v-web.png"
+	  var marker = new google.maps.Marker({
+	    map: map,
+	    icon: image,
+	    position: place
+	  });
 
 	  google.maps.event.addListener(marker, 'click', function() {
 	    var options = {
@@ -220,14 +239,22 @@ $(function(){
 			scrapeResult.vegan.forEach(function(aPlace){
 				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm,"");
 				console.log(aPlace,"*********APLACE**********");
-				locationLatLng = geoCode(aPlace)
+				locationLatLng = geoCodeV(aPlace)
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
+<<<<<<< HEAD
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
+=======
+
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+>>>>>>> fc303218ccf6c5e08ce71d362b6b9e2ff1104546
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
+
+				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+
 			})
 		}
 	})
@@ -245,6 +272,22 @@ $(function(){
 			  }
   		})
   	}
+
+	function geoCodeV(address){
+		console.log(address,"*********ADDRESS**********");
+
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        
+		        location = results[0].geometry.location
+		        console.log(location)
+		        // map.setCenter(results[0].geometry.location);
+
+		        createMarkerV(location)
+			  }
+  		})
+  	} 	  	
 
 	
 
