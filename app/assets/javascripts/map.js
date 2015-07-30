@@ -1,5 +1,6 @@
 
 $(function(){
+
 	$('.navbar').css('display', 'block')
 
 	$('#gluten-event').bootstrapToggle('off')
@@ -310,15 +311,9 @@ $(function(){
 				// locationLatLng = geoCode(placeAddress, true)
 
 
+
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 				$('p.success').css('margin-bottom', '5px')
-
-				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
-				// createMarker(locationLatLng)
-
-
-				// $('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
-
 
 			})
 		}
