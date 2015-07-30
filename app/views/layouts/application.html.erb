@@ -31,7 +31,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Eduardo <span class="sr-only">(current)</span></a></li>
-        <li>Gluten Free: <input id="gluten-event" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"></li>
+        <li>Gluten Free: <input id="gluten-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="default" data-height="53"></li>
+        <li>Vegan: <input id="vegan-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default" data-height="53"></li>
         <li id="myLocation"><a href="#">Find My Location</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Drop Down of Things <span class="caret"></span></a>
@@ -46,15 +47,9 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search" id="navSearchForm">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Keyword Search">
-        </div>
-        <button type="submit" class="btn btn-default">Look for Food</button>
-      </form>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Location Search">
+          <input type="text" class="form-control" placeholder="Location Search" input id="searchedLocation" name="bestLocation">
         </div>
         <button type="submit" class="btn btn-default">Look by Location</button>
       </form>
@@ -69,7 +64,7 @@
   <% if key == "notice" %>
     <%= content_tag :div, value, class: "text-center alert alert-warning" %>
   <% elsif key == "alert" %>
-    <%= content_tag :div, value, class: "text-center alert alert-danger" %>
+    <%= content_tag :div, value, class: "text-center alert alert-default" %>
   <% else %>
     <%= content_tag :div, value, class: "text-center alert alert-success" %>
   <% end %>
