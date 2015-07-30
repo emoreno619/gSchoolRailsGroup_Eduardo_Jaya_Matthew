@@ -12,7 +12,6 @@ class LocationsController < ApplicationController
 
   def new
   	@location = Location.new
-
   end
 
   def create
@@ -122,7 +121,8 @@ class LocationsController < ApplicationController
     happycow = "http://www.happycow.net/disp_results_address.php?distance=15&lat=37.7749&lon=-122.419&list[]=vegan&sortby=0&kw=" + keyword
     res = Nokogiri::HTML(Typhoeus.get(happycow).response_body)
 
-    happyResult = Hash.new
+    # happyResult = Hash.new
+    happyResult = []
     # puts "LOOOOOOOOOK HERE " 
     res.css(".search-results-item").each do |location|
       puts location.css('a').first.text
@@ -134,7 +134,7 @@ class LocationsController < ApplicationController
         
         temp = temp1 + temp2
         
-        happyResult[location.css('a').first.text] = temp
+        happyResult << location.css('a').first.text + " " + temp
       end
     end
 

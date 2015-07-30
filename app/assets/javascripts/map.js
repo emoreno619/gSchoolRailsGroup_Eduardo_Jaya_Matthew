@@ -1,4 +1,4 @@
-alert("Yo")
+
 $(function(){
 
 	var sanFrancisco = new google.maps.LatLng(37.7833,-122.4167);
@@ -200,7 +200,12 @@ $(function(){
 			scrapeResult.gluten_free.forEach(function(aPlace){
 				// console.log(aPlace)
 				locationLatLng = geoCode(aPlace)
-				$('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
+				cutoff = aPlace.search(/\d/)
+				placeName = aPlace.slice(0, cutoff)
+				placeAddress = aPlace.slice(cutoff, aPlace.length)
+				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+
+				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 			})
 		}

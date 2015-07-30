@@ -1,0 +1,17 @@
+<p><% @locations.each do |location| %></p>
+<p><%= link_to location.name, location_path(location) %></p>
+<p><%= location.address %></p>
+<p><%= location.phone %></p>
+<p><%= location.gluten_free %></p>
+<p><%= location.vegan %></p>
+<p>*************************</p>
+<% end %>
+
+
+	    <p><% @foods.each do |food| %></p>
+
+	    <p><%= food.name %></p>
+	    <p>Gluten-free: <%= food.gluten_free %></p>
+	    <p>Vegan:<%= food.vegan %></p>
+	    <p><img src="<%= food.image_url%>"></p>
+	    <% end %>

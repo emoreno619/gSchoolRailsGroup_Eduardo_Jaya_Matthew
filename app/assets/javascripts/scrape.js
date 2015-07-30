@@ -34,6 +34,20 @@ $(function(){
 
 	// $('#gluten-event').change(function(){
 		
+
+		if ($('#gluten-event').parent().hasClass('off')){
+			$('.aPlace').remove()
+		} else {
+			scrapeResult.gluten_free.forEach(function(aPlace){
+				cutoff = aPlace.search(/\d/)
+				placeName = aPlace.slice(0, cutoff)
+				placeAddress = aPlace.slice(cutoff, aPlace.length)
+				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+
+			})
+		}
+	})
+
 	// 	if ($('#gluten-event').parent().hasClass('off')){
 	// 		$('.aPlace').remove()
 	// 	} else {
@@ -43,5 +57,6 @@ $(function(){
 	// 		})
 	// 	}
 	// })
+
 
 });

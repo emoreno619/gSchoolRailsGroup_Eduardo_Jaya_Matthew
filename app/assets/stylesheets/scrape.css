@@ -1,0 +1,12 @@
+.aPlace {
+	
+}
+
+.warning {
+	color:#eb9316;
+}
+
+#appendPlaces {
+	overflow:scroll;
+	height:500px;
+}
