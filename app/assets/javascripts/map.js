@@ -211,6 +211,25 @@ $(function(){
 		}
 	})
 
+	$('#vegan-event').change(function(){
+		if ($('#vegan-event').parent().hasClass('off')){
+			//remove pins
+		} else {
+			scrapeResult.vegan.forEach(function(aPlace){
+				// aPlace = aPlace.replace(/(\r\n|\n|\r)/gm,"");
+				console.log(aPlace,"*********APLACE**********");
+				locationLatLng = geoCode(aPlace)
+				// cutoff = aPlace.search(/\d/)
+				// placeName = aPlace.slice(0, cutoff)
+				// placeAddress = aPlace.slice(cutoff, aPlace.length)
+				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+
+				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
+				// createMarker(locationLatLng)
+			})
+		}
+	})
+
 	function geoCode(address){
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode( { 'address': address}, function(results, status) {
