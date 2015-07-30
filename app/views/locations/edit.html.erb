@@ -13,9 +13,9 @@
    <%= f.label "image_url" %>
    <%= f.text_field :image_url %><br />
    <% if current_user.is_admin %>
-     <%= f.hidden_field :is_public, value: true%>
+     <%= f.hidden_field :is_public %>
    <% else %>
-     <%= f.hidden_field :is_public, value: false %>
+     <%= f.hidden_field :is_public %>
    <% end %>
    <%= f.submit%>
 <% end %>

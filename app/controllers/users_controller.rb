@@ -6,6 +6,16 @@ class UsersController < ApplicationController
   	@users = User.all
   end
 
+  def create
+    @user = User.create user_params
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to locations_path
+    else
+      render :signup
+    end
+  end
+
   def show
   	@user = User.find_by_id(params[:id])
   end
