@@ -153,7 +153,7 @@ $(function(){
 		   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 		   map.setCenter(myLatLong);
 		 });
-		} 
+	} 
 
 		
 	
@@ -195,6 +195,7 @@ $(function(){
 
 	$('#gluten-event').change(function(){
 		if ($('#gluten-event').parent().hasClass('off')){
+			$('.aGlutenFreePlace').remove()
 			//remove pins
 		} else {
 			scrapeResult.gluten_free.forEach(function(aPlace){
@@ -203,7 +204,7 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
@@ -213,6 +214,7 @@ $(function(){
 
 	$('#vegan-event').change(function(){
 		if ($('#vegan-event').parent().hasClass('off')){
+			$('.aVeganPlace').remove()
 			//remove pins
 		} else {
 			scrapeResult.vegan.forEach(function(aPlace){
@@ -222,7 +224,7 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
