@@ -8,7 +8,7 @@ $(function(){
 	
 	var map;
 
-
+	var checkboxes = document.getElementsByTagName('input');
 
 	function initialize() {
 		map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -218,7 +218,7 @@ $(function(){
 
 	function changeButtonText(){
 	  window.setTimeout(function() {
-	    $("#myLocation").children().text("Finding You.......");
+	    $("#myLocation").children().text("Finding You...");
 	    $("#myLocation").children().css("color","blue")
 	    }, 100)
 	  // $("#myLocation").children().addClass('fade')
@@ -253,8 +253,13 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
+<<<<<<< HEAD
 				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 				$('p.warning').css('margin-bottom', '5px')
+=======
+				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aGlutenFreePlace">')
+
+>>>>>>> JayaDarby-master
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 			})
@@ -286,12 +291,19 @@ $(function(){
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
 
+<<<<<<< HEAD
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
+=======
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
+>>>>>>> JayaDarby-master
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 
+<<<<<<< HEAD
 				// $('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+=======
+>>>>>>> JayaDarby-master
 			})
 		}
 	})

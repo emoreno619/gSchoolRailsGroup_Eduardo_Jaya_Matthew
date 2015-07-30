@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
   end
 
   def login
+
   end
 
   def create
-    @user = User.create user_params
+    @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
       redirect_to locations_path
@@ -19,17 +20,18 @@ class SessionsController < ApplicationController
   end
 
   def attempt_login
-    if params[:username].present? && params[:password].present?
-      found_user = User.where(username: params[:username]).first
+ 
+    if params[:email].present? && params[:password].present?
+      found_user = User.where(email: params[:email]).first
       if found_user && found_user.authenticate(params[:password])
         session[:user_id] = found_user.id
         redirect_to locations_path
       else
-        flash[:alert] = "username / password combination is invalid"
+        flash[:alert] = "email / password combination is invalid"
         redirect_to login_path(@user)
       end
     else
-      flash[:alert] = "please enter username and password"
+      flash[:alert] = "please enter email and password"
       redirect_to login_path
     end
   end
@@ -38,7 +40,7 @@ class SessionsController < ApplicationController
     # session.clear
     session[:user_id] = nil
     flash[:notice] = "Logged out"
-    redirect_to login_path
+    redirect_to locations_path
   end
 
   private
