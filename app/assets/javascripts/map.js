@@ -1,6 +1,9 @@
 
 $(function(){
 
+	$('#gluten-event').bootstrapToggle('off')
+	$('#vegan-event').bootstrapToggle('off')
+
 	var sanFrancisco = new google.maps.LatLng(37.7833,-122.4167);
 	// console.log(sanFrancisco,"*********SANFRANCISCO**********");
 
@@ -60,10 +63,13 @@ $(function(){
 	  // google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
 	   var fromMeToLoc = google.maps.geometry.spherical.computeDistanceBetween (me, loc);
 	   // console.log(fromMeToLoc, "DISTANCE BTWN");
+	   return fromMeToLoc
 	}
 	
 
 	function createMarker(place, is_vegan) {
+	  if (is_vegan)
+	  	console.log("vegan!");
 	  var image;
 	  if (is_vegan)
 	  	image = "assets/marker-v-web.png"
@@ -77,13 +83,16 @@ $(function(){
 	  });
 
 
-	  if (is_vegan)
+	  if (is_vegan) {
 	  	veganPins.push(marker);
-	  else
+	  	console.log("pushing vegan pins")
+	  } else {
 	  	glutenPins.push(marker);
+	  	console.log("pushing GF pins")
+	  }
 
 	  // console.log("VEGAN PINS " + veganPins)
-	  console.log("GLUTEN PINS " + glutenPins)
+	  // console.log("GLUTEN PINS " + glutenPins)
 
 	  google.maps.event.addListener(marker, 'click', function() {
 	    var options = {
@@ -187,6 +196,7 @@ $(function(){
 		   // console.log(position.coords.latitude, position.coords.longitude, "SHAKE IT BABY");
 		   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 		   map.setCenter(myLatLong);
+
 		 });
 	} 
 
@@ -227,6 +237,7 @@ $(function(){
 
 	}
  	var locationLatLng
+	
 
 	$('#gluten-event').change(function(){
 		if ($('#gluten-event').parent().hasClass('off')){
@@ -284,12 +295,21 @@ $(function(){
 			  }
 
 			scrapeResult.vegan.forEach(function(aPlace){
-				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm,"");
-				// console.log(aPlace,"*********APLACE**********");
-				// geoCode(aPlace, true)
+
+				222
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeName = aPlace.slice(0, cutoff)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+
+				222
+
+				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
+				// locationLatLng = geoCode(placeAddress, true)
 
 <<<<<<< HEAD
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
@@ -321,6 +341,7 @@ $(function(){
 	// 		  }
  //  		})
  //  	}
+ distanceObj = {};
 
 	function geoCode(address, is_vegan){
 		// console.log(address,"*********ADDRESS**********");
@@ -332,8 +353,12 @@ $(function(){
 		        location = results[0].geometry.location
 		        // console.log(location)
 		        // map.setCenter(results[0].geometry.location);
+		        // console.log(myLatLong,"*********MYLATLONG**********");
 
+		        console.log(distanceBtwnPoints(myLatLong,location))
 		        createMarker(location, is_vegan)
+			  } else {
+			  	setTimeout(function() { geoCode(address, is_vegan);}, 1000);
 			  }
   		})
   	} 	  	
@@ -353,12 +378,22 @@ $(function(){
 				// initialize();
 
 				scrapeResult.gluten_free.forEach(function(aPlace){
-					geoCode(aPlace, false)
-					console.log(aPlace)
+
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+					// console.log(placeAddress,"*********PLACEADDRESS**********");
+
+					geoCode(placeAddress, false)
+					// console.log(aPlace)
 				})
 
 				scrapeResult.vegan.forEach(function(aPlace){
-					geoCode(aPlace,true)
+
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+					geoCode(placeAddress, true)
 				})
 
 				// scrapeResult.gluten_free.forEach(function(aPlace){
