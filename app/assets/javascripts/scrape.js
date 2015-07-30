@@ -35,7 +35,10 @@ $(function(){
 			$('.aPlace').remove()
 		} else {
 			scrapeResult.gluten_free.forEach(function(aPlace){
-				$('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
+				cutoff = aPlace.search(/\d/)
+				placeName = aPlace.slice(0, cutoff)
+				placeAddress = aPlace.slice(cutoff, aPlace.length)
+				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
 
 			})
 		}
