@@ -38,7 +38,7 @@ $(function(){
 	// 		$('.aPlace').remove()
 	// 	} else {
 	// 		scrapeResult.gluten_free.forEach(function(aPlace){
-	// 			$('h1').append('<div class="aPlace">'+ aPlace +'</div>')
+				// $('h1').append('<div class="aPlace">'+ aPlace +'</div>')
 
 	// 		})
 	// 	}

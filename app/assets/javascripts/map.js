@@ -200,6 +200,7 @@ $(function(){
 			scrapeResult.gluten_free.forEach(function(aPlace){
 				// console.log(aPlace)
 				locationLatLng = geoCode(aPlace)
+				$('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 			})
 		}
