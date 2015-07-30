@@ -18,3 +18,11 @@
 * {
  	font-family: 'Arimo', sans-serif;
  }
+
+.floating {
+	float:left;
+}
+
+.center {
+	text-align: center;
+}

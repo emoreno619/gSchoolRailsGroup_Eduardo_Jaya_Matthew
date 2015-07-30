@@ -19,13 +19,14 @@
     padding: 0;
   }
 </style>
-
-<h1>Name of our app</h1>
-<h3>A place to find your favorite gluten-free and vegan foods!</h3>
-
-  <div id="map-canvas"></div>
-  <div id='appendPlaces' class='warning'>testingtesting</div>
-
+<div class='container'>
+<h1 class='center'>Name of our app</h1>
+<h3 class='center'>A place to find your favorite gluten-free and vegan foods!</h3>
+<div class='container'>
+  <div id="map-canvas" style='height:500px; width:60%' class='floating'></div>
+  <div style='width:5%; height:500px' class='floating'></div>
+  <div id='appendPlaces' style='width:35%'class='warning floating'>testingtesting</div>
+</div>
 
 <form id="searchForm" action="">
 	<label for="keyword"> Keyword:
@@ -54,3 +55,4 @@
 
 
 <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+</div>
