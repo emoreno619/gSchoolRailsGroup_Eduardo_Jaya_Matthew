@@ -2,7 +2,7 @@
 $(function(){
 
 	var sanFrancisco = new google.maps.LatLng(37.7833,-122.4167);
-	console.log(sanFrancisco,"*********SANFRANCISCO**********");
+	// console.log(sanFrancisco,"*********SANFRANCISCO**********");
 
 	var location = sanFrancisco
 	
@@ -17,14 +17,14 @@ $(function(){
 		    });
 	
 		if(formData.city){
-		      	console.log("GOT THERE")
+		      	// console.log("GOT THERE")
 		      	address = formData.city
 		      	geocoder = new google.maps.Geocoder();
 		      	geocoder.geocode( { 'address': address}, function(results, status) {
 		      	      if (status == google.maps.GeocoderStatus.OK) {
 		      	        
 		      	        location = results[0].geometry.location
-		      	        console.log(location)
+		      	        // console.log(location)
 		      	        map.setCenter(results[0].geometry.location);
 
 		      	        var request = {
@@ -59,7 +59,7 @@ $(function(){
 	function distanceBtwnPoints(me,loc) {
 	  // google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
 	   var fromMeToLoc = google.maps.geometry.spherical.computeDistanceBetween (me, loc);
-	   console.log(fromMeToLoc, "DISTANCE BTWN");
+	   // console.log(fromMeToLoc, "DISTANCE BTWN");
 	}
 	
 
@@ -141,7 +141,7 @@ $(function(){
 	  if ("geolocation" in navigator) {
 	      changeButtonText();
 	   navigator.geolocation.getCurrentPosition(function (position) {
-	     console.log(position.coords.latitude, position.coords.longitude);
+	     // console.log(position.coords.latitude, position.coords.longitude);
 	     myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 	     distanceBtwnPoints(myLatLong, sanFrancisco)
 	    if (markerAlready === false) {
@@ -199,7 +199,7 @@ $(function(){
 		      	      if (status == google.maps.GeocoderStatus.OK) {
 		      	        
 		      	        location = results[0].geometry.location
-		      	        console.log(location)
+		      	        // console.log(location)
 		      	        map.setCenter(results[0].geometry.location);
 
 		      	      } else {
@@ -244,8 +244,8 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
-
+				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
+				$('p.warning').css('margin-bottom', '5px')
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 			})
@@ -256,7 +256,7 @@ $(function(){
 		if ($('#vegan-event').parent().hasClass('off')){
 			$('.aVeganPlace').remove()
 			//remove pins
-			console.log(veganPins)
+			// console.log(veganPins)
 
 			for (var i = 0; i < veganPins.length; i++) {
 			    veganPins[i].setMap(null);
@@ -266,18 +266,18 @@ $(function(){
 		} else {
 			scrapeResult.vegan.forEach(function(aPlace){
 				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm,"");
-				console.log(aPlace,"*********APLACE**********");
+				// console.log(aPlace,"*********APLACE**********");
 				locationLatLng = geoCode(aPlace, true)
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
 
-				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 
-				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				// $('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
 			})
 		}
 	})
@@ -288,7 +288,7 @@ $(function(){
 	// 	      if (status == google.maps.GeocoderStatus.OK) {
 		        
 	// 	        location = results[0].geometry.location
-	// 	        console.log(location)
+		        // console.log(location)
 	// 	        // map.setCenter(results[0].geometry.location);
 
 	// 	        createMarker(location)
@@ -297,14 +297,14 @@ $(function(){
  //  	}
 
 	function geoCode(address, is_vegan){
-		console.log(address,"*********ADDRESS**********");
+		// console.log(address,"*********ADDRESS**********");
 
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode( { 'address': address}, function(results, status) {
 		      if (status == google.maps.GeocoderStatus.OK) {
 		        
 		        location = results[0].geometry.location
-		        console.log(location)
+		        // console.log(location)
 		        // map.setCenter(results[0].geometry.location);
 
 		        createMarker(location, is_vegan)
