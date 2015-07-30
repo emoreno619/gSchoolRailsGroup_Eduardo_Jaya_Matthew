@@ -1,4 +1,7 @@
+
+
 $(function(){
+
 	// $('#searchForm').submit(function (e){
 	// 	e.preventDefault();
 		
@@ -18,19 +21,20 @@ $(function(){
 
 	// })
 
-	var scrapeResult;
+	// var scrapeResult;
 
-	$.ajax({
-			  type: 'POST',
-			  url: '/locations/search',
-			  dataType: 'json'
-			}).done(function(datas) {
-				console.log(datas)
-				scrapeResult = datas.result
-			})
+	// $.ajax({
+	// 		  type: 'POST',
+	// 		  url: '/locations/search',
+	// 		  dataType: 'json'
+	// 		}).done(function(datas) {
+	// 			console.log(datas)
+	// 			scrapeResult = datas.result
+	// 		})
 
-	$('#gluten-event').change(function(){
+	// $('#gluten-event').change(function(){
 		
+
 		if ($('#gluten-event').parent().hasClass('off')){
 			$('.aPlace').remove()
 		} else {
@@ -43,5 +47,16 @@ $(function(){
 			})
 		}
 	})
+
+	// 	if ($('#gluten-event').parent().hasClass('off')){
+	// 		$('.aPlace').remove()
+	// 	} else {
+	// 		scrapeResult.gluten_free.forEach(function(aPlace){
+				// $('h1').append('<div class="aPlace">'+ aPlace +'</div>')
+
+	// 		})
+	// 	}
+	// })
+
 
 });
