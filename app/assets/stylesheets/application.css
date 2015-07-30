@@ -23,6 +23,11 @@
 	font-size: 40px;
 }
 
+.cursive{
+	font-family: 'Sansita One', cursive;
+	font-size: 30px;
+}
+
 .centerToggle {
     margin-top: 10px;
     margin-bottom: 10px;
