@@ -1,9 +1,14 @@
+alert("Yo")
 $(function(){
 
 	var sanFrancisco = new google.maps.LatLng(37.7833,-122.4167);
+	console.log(sanFrancisco,"*********SANFRANCISCO**********");
+
 	var location = sanFrancisco
 	
 	var map;
+
+
 
 	function initialize() {
 		map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -41,6 +46,7 @@ $(function(){
 		      } // END IF
 
 	createMarker(sanFrancisco)
+	centerOnUserLocation()
 
 	} // END FUNCTION
 
@@ -58,10 +64,15 @@ $(function(){
 	
 
 	function createMarker(place) {
+		console.log(place,"*********PLACE**********");
+
 	  var marker = new google.maps.Marker({
 	    map: map,
-	    position: sanFrancisco
+	    position: place
 	  });
+
+	 
+
 
 	  google.maps.event.addListener(marker, 'click', function() {
 	    var options = {
@@ -77,6 +88,8 @@ $(function(){
 	  });
 	}
 
+
+
 	$('#navSearchForm').submit(function(e){
 		e.preventDefault();
 		// ids = []
@@ -87,7 +100,7 @@ $(function(){
 		//request.location below and map.center
 		formData.city = $('#searchedLocation').val();
 		
-		initialize();
+		// initialize();
 		
 	})
 
@@ -133,55 +146,40 @@ $(function(){
 	  });
 	}
 
-	// function centerOnUserLocation(location) {
-	// 	if ("geolocation" in navigator) {
-	// 	    changeButtonText();
-	// 	 navigator.geolocation.getCurrentPosition(function (position) {
-	// 	   console.log(position.coords.latitude, position.coords.longitude);
-	// 	   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-	// 	   $$$ center map here
-	// 	 });
-	// 	} else {
-	// 	  // no native support; maybe try a fallback?
-	// 	  $("#myLocation").children().text("Find Failed :("); 
-	// 	  // $("#myLocation").removeClass('fade')
-	// 	}
+	function centerOnUserLocation(location) {
+		if ("geolocation" in navigator) {
+		 navigator.geolocation.getCurrentPosition(function (position) {
+		   // console.log(position.coords.latitude, position.coords.longitude, "SHAKE IT BABY");
+		   myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+		   map.setCenter(myLatLong);
+		 });
+		} 
+
+		
 	
 
-	// 	if("geolocation" in navigator){
-	// 	      	console.log("GOT to geocoder")
-	// 	      	// change to make address the coordinates of the user, or make the geocoder = to the user address
-	// 	      	address = formData.city
-	// 	      	geocoder = new google.maps.Geocoder();
-	// 	      	geocoder.geocode( { 'address': address}, function(results, status) {
-	// 	      	      if (status == google.maps.GeocoderStatus.OK) {
+		if("geolocation" in navigator){
+		      	// console.log("GOT to geocoder")
+		      	// change to make address the coordinates of the user, or make the geocoder = to the user address
+		      	address = formData.city
+		      	geocoder = new google.maps.Geocoder();
+		      	geocoder.geocode( { 'address': address}, function(results, status) {
+		      	      if (status == google.maps.GeocoderStatus.OK) {
 		      	        
-	// 	      	        location = results[0].geometry.location
-	// 	      	        console.log(location)
-	// 	      	        map.setCenter(results[0].geometry.location);
+		      	        location = results[0].geometry.location
+		      	        console.log(location)
+		      	        map.setCenter(results[0].geometry.location);
 
-	// 	      	        var request = {
-	// 	      	          location: location,
-	// 	      	          radius: '500',
-	// 	      	          query: formData.name
-	// 	      	        };
-
-	// 	      	        service = new google.maps.places.PlacesService(map);
-	// 	      	        service.textSearch(request, callback);
-	// 	      	        // var marker = new google.maps.Marker({
-	// 	      	        //     map: map,
-	// 	      	        //     position: results[0].geometry.location
-	// 	      	        // });
-	// 	      	      } else {
-	// 	      	        // alert("Geocode was not successful for the following reason: " + status);
-	// 	      	      }
-	// 	      	    });
-	// 	      } // END IF
+		      	      } else {
+		      	        // alert("Geocode was not successful for the following reason: " + status);
+		      	      }
+		      	    });
+		      } // END IF
 
 
 
 
-	// }
+	 }
 
 	function changeButtonText(){
 	  window.setTimeout(function() {
@@ -193,6 +191,46 @@ $(function(){
 
 
 	}
+ 	var locationLatLng
 
-	initialize();
+	$('#gluten-event').change(function(){
+		if ($('#gluten-event').parent().hasClass('off')){
+			//remove pins
+		} else {
+			scrapeResult.gluten_free.forEach(function(aPlace){
+				// console.log(aPlace)
+				locationLatLng = geoCode(aPlace)
+				// createMarker(locationLatLng)
+			})
+		}
+	})
+
+	function geoCode(address){
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        
+		        location = results[0].geometry.location
+		        console.log(location)
+		        // map.setCenter(results[0].geometry.location);
+
+		        createMarker(location)
+			  }
+  		})
+  	}
+
+	
+
+	var scrapeResult;
+
+	$.ajax({
+			  type: 'POST',
+			  url: '/locations/search',
+			  dataType: 'json'
+			}).done(function(datas) {
+				console.log(datas)
+				scrapeResult = datas.result
+				// initialize();
+			})
+
 })

@@ -76,7 +76,7 @@ class LocationsController < ApplicationController
 
     ######## SELENIUM SEARCHES
 
-    result[:udis] = drive_em(location)
+    # result[:udis] = drive_em(location)
 
     render :json => {
                       :result => result
