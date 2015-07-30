@@ -1,17 +1,22 @@
-<h1>Login</h1>
 
-  <%= form_tag(login_path) do %>
-<p>
-  <%= label_tag(:username)%>
-  <%= text_field_tag(:username, params[:username], autofocus: true)%>
-</p>
-<p>
-  <%= label_tag(:password)%>
-  <%= password_field_tag(:password)%>
-</p>
-<p>
-  <%= submit_tag("Log in", class: "btn btn-primary") %>
-</p>
-<% end %>
+<div class="col-sm-offset-3">
+  <div class="col-sm-7">
+    <div class="well">
+      <h1>Login</h1>
+      <%= form_tag login_path do %>
+        <div class="form-group">
+          <%= label_tag :email, nil, class:"control-label" %>
+          <%= text_field_tag :email, params[:email], autofocus: true, class:"form-control" %>
+        </div>
 
-<%= link_to "Don't have an account? Sign up here", signup_path%>
+        <div class="form-group">
+          <%= label_tag :password, class:"control-label" %>
+          <%= password_field_tag :password, params[:password], class:"form-control" %>
+        </div>
+
+        <%= submit_tag "Log in", id:"submit-user", class:"btn btn-block btn-primary" %>
+      <% end %>
+      <%= link_to "Don't have an account? Sign up here", signup_path %>
+    </div>
+  </div>
+</div>

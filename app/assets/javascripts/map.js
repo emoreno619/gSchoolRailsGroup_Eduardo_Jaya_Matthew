@@ -8,7 +8,7 @@ $(function(){
 	
 	var map;
 
-
+	var checkboxes = document.getElementsByTagName('input');
 
 	function initialize() {
 		map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -202,7 +202,7 @@ $(function(){
 
 	function changeButtonText(){
 	  window.setTimeout(function() {
-	    $("#myLocation").children().text("Finding You.......");
+	    $("#myLocation").children().text("Finding You...");
 	    $("#myLocation").children().css("color","blue")
 	    }, 100)
 	  // $("#myLocation").children().addClass('fade')
@@ -246,11 +246,8 @@ $(function(){
 
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
 
-
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
-
-				$('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
 
 			})
 		}
