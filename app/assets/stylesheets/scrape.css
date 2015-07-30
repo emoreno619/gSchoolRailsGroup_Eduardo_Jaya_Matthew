@@ -1,4 +1,8 @@
-.aPlace {
+.aGlutenPlace {
+	
+}
+
+.aVeganPlace {
 	
 }
 
@@ -10,3 +14,7 @@
 	overflow:scroll;
 	height:500px;
 }
+
+* {
+ 	font-family: 'Arimo', sans-serif;
+ }
