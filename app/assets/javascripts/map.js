@@ -1,6 +1,9 @@
 
 $(function(){
 
+	$('#gluten-event').bootstrapToggle('off')
+	$('#vegan-event').bootstrapToggle('off')
+
 	var sanFrancisco = new google.maps.LatLng(37.7833,-122.4167);
 	// console.log(sanFrancisco,"*********SANFRANCISCO**********");
 
@@ -224,6 +227,7 @@ $(function(){
 
 	}
  	var locationLatLng
+	
 
 	$('#gluten-event').change(function(){
 		if ($('#gluten-event').parent().hasClass('off')){
@@ -265,12 +269,14 @@ $(function(){
 			veganPins = []
 		} else {
 			scrapeResult.vegan.forEach(function(aPlace){
-				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm,"");
+
+				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
 				// console.log(aPlace,"*********APLACE**********");
-				locationLatLng = geoCode(aPlace, true)
+				
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
+				locationLatLng = geoCode(placeAddress, true)
 
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 
