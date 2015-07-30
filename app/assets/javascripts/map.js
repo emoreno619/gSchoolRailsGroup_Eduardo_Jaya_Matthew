@@ -1,5 +1,6 @@
 
 $(function(){
+	$('.navbar').css('display', 'block')
 
 	$('#gluten-event').bootstrapToggle('off')
 	$('#vegan-event').bootstrapToggle('off')
@@ -264,13 +265,10 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-<<<<<<< HEAD
+
 				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 				$('p.warning').css('margin-bottom', '5px')
-=======
-				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aGlutenFreePlace">')
 
->>>>>>> JayaDarby-master
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 			})
@@ -311,19 +309,17 @@ $(function(){
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
 				// locationLatLng = geoCode(placeAddress, true)
 
-<<<<<<< HEAD
+
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
-=======
-				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
->>>>>>> JayaDarby-master
+				$('p.success').css('margin-bottom', '5px')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
 
-<<<<<<< HEAD
+
 				// $('#appendPlaces').first().append('<div class="aPlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
-=======
->>>>>>> JayaDarby-master
+
+
 			})
 		}
 	})
