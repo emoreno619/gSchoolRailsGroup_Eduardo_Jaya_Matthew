@@ -29,37 +29,35 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#" id='logoNav'>Brand</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Eduardo <span class="sr-only">(current)</span></a></li>
-        <li>Gluten Free: <input id="gluten-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="default" data-height="53"></li>
-        <li>Vegan: <input id="vegan-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default" data-height="53"></li>
+        <li class='centerToggle'>Gluten Free: <input id="gluten-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="default" data-size="small"></li>
+        <li class='centerToggle'>Vegan: <input id="vegan-event" input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default" data-size="small"></li>
         <li id="myLocation"><a href="#">Find My Location</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Drop Down of Things <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">I Want to Find <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Users</a></li>
             <li><a href="#">Foods</a></li>
             <li><a href="#">Locations</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Dead rats</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Nothing useful</a></li>
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search" id="navSearchForm">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Location Search" input id="searchedLocation" name="bestLocation">
-        </div>
-        <button type="submit" class="btn btn-default">Look by Location</button>
-      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><% if !logged_in?%><%= link_to "Signup", signup_path %><% end %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><% if logged_in?%><%= link_to "Logout", logout_path, method: :delete %><% else %><%= link_to "Login", login_path %><% end %></li>
       </ul>
+      <form class="navbar-form navbar-right" role="search" id="navSearchForm">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Location Search" input id="searchedLocation" name="bestLocation" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+        </div>
+        <button type="submit" class="btn btn-default">Look by Location</button>
+      </form>
     </div>
   </div>
 </nav>
