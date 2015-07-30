@@ -204,7 +204,7 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				$('#appendPlaces').first().append('<div class="aGlutenFreePlace"><p class="warning">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aGlutenFreePlace">')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
@@ -224,7 +224,7 @@ $(function(){
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br>')
+				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div><br class="aVeganPlace">')
 
 				// $('h1').first().append('<div class="aPlace">'+ aPlace +'</div>')
 				// createMarker(locationLatLng)
