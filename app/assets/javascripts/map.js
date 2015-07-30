@@ -74,7 +74,7 @@ $(function(){
 	    image = "assets/marker-gf-web.png"
 
 	  var marker = new google.maps.Marker({
-	    map: map,
+	    map: null,
 	    icon: image,
 	    position: place
 	  });
@@ -84,6 +84,9 @@ $(function(){
 	  	veganPins.push(marker);
 	  else
 	  	glutenPins.push(marker);
+
+	  // console.log("VEGAN PINS " + veganPins)
+	  // console.log("GLUTEN PINS " + glutenPins)
 
 	  google.maps.event.addListener(marker, 'click', function() {
 	    var options = {
@@ -238,12 +241,18 @@ $(function(){
 			    glutenPins[i].setMap(null);
 			  }
 
-			glutenPins = []
+			// glutenPins = []
 
 		} else {
+
+			// console.log(glutenPins)
+			for (var i = 0; i < glutenPins.length; i++) {
+			    glutenPins[i].setMap(map);
+			  }
+
 			scrapeResult.gluten_free.forEach(function(aPlace){
 				// console.log(aPlace)
-				locationLatLng = geoCode(aPlace, false)
+				// locationLatLng = geoCode(aPlace, false)
 				
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
@@ -266,17 +275,29 @@ $(function(){
 			    veganPins[i].setMap(null);
 			  }
 
-			veganPins = []
+			// veganPins = []
 		} else {
+
+			for (var i = 0; i < veganPins.length; i++) {
+			    veganPins[i].setMap(map);
+			  }
+
 			scrapeResult.vegan.forEach(function(aPlace){
 
+				222
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeName = aPlace.slice(0, cutoff)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+
+				222
+
 				aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
-				// console.log(aPlace,"*********APLACE**********");
-				
+
 				cutoff = aPlace.search(/\d/)
 				placeName = aPlace.slice(0, cutoff)
 				placeAddress = aPlace.slice(cutoff, aPlace.length)
-				locationLatLng = geoCode(placeAddress, true)
+				// locationLatLng = geoCode(placeAddress, true)
 
 				$('#appendPlaces').first().append('<div class="aVeganPlace"><p class="success">'+ placeName + '</p><p>'+ placeAddress +'</p></div>')
 
@@ -331,6 +352,30 @@ $(function(){
 				console.log(datas)
 				scrapeResult = datas.result
 				// initialize();
+
+				scrapeResult.gluten_free.forEach(function(aPlace){
+
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+					console.log(placeAddress,"*********PLACEADDRESS**********");
+
+					geoCode(placeAddress, false)
+					console.log(aPlace)
+				})
+
+				scrapeResult.vegan.forEach(function(aPlace){
+
+					aPlace = aPlace.replace(/\\n/gm,"").replace(/"/gm," ");
+					cutoff = aPlace.search(/\d/)
+					placeAddress = aPlace.slice(cutoff, aPlace.length)
+					geoCode(placeAddress, true)
+				})
+
+				// scrapeResult.gluten_free.forEach(function(aPlace){
+				// 	geoCode(aPlace, false)
+				// 	console.log(aPlace)
+				// })
 			})
 
 })
