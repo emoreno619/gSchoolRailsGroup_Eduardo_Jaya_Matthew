@@ -206,6 +206,14 @@ $(function(){
 		}
 	})
 
+	$('#vegan-event').change(function(){
+		if ($('#vegan-event').parent().hasClass('off')){
+			//remove pins
+		} else {
+			
+		}
+	})
+
 	function geoCode(address){
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode( { 'address': address}, function(results, status) {
