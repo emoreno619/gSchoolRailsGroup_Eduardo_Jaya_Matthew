@@ -1,5 +1,5 @@
 <div class="col-sm-offset-3">
-  <div class="col-sm-7">
+  <div class="col-sm-7 centerSessions">
     <div class="well">
       <h1 class="text-center">Sign Up!</h1><br>
       <%= form_for @user, url: signup_path do |f| %>
@@ -13,7 +13,7 @@
           <%= f.password_field :password, class:"form-control" %>
         </div>
 
-        <%= f.submit "Signup", id:"submit-user", class:"btn btn-block btn-success text-center" %>
+        <%= f.submit "Signup", id:"submit-user", class:"btn btn-block sessionsButton text-center" %>
       <% end %>
     </div>
   </div>

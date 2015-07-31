@@ -23,9 +23,35 @@
 	font-size: 40px;
 }
 
+.cursive{
+	font-family: 'Sansita One', cursive;
+	font-size: 30px;
+}
+
 .centerToggle {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 5px;
     margin-left: 5px;
+}
+
+.sessionsButton {
+	background-color:#33B575;
+}
+
+.centerSessions {
+  position: relative;
+  top: 50%;
+  transform: translateY(+30%);
+}
+
+.carousel .item {
+  height: 400px;
+}
+
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
 }
