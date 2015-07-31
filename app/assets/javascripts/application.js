@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$( "a" ).hover(
+  function() {
+    $( this ).addClass("animated pulse");
+  }, function() {
+    $( this ).removeClass("animated pulse");
+  }
+);
+
+

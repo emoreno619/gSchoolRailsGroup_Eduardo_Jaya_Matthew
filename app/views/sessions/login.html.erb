@@ -1,6 +1,6 @@
 
 <div class="col-sm-offset-3">
-  <div class="col-sm-7">
+  <div class="col-sm-7 centerSessions">
     <div class="well">
       <h1>Login</h1>
       <%= form_tag login_path do %>
@@ -14,9 +14,12 @@
           <%= password_field_tag :password, params[:password], class:"form-control" %>
         </div>
 
-        <%= submit_tag "Log in", id:"submit-user", class:"btn btn-block btn-primary" %>
-      <% end %>
-      <%= link_to "Don't have an account? Sign up here", signup_path %>
+        <%= submit_tag "Log in", id:"submit-user", class:"btn btn-block sessionsButton" %>
+      <% end %><p>
+      <%= link_to "Don't have an account? Sign up here", signup_path %></p>
+            <p>
+        <%= link_to "Forgot your password?", new_reset_path %>
+      </p>
     </div>
   </div>
 </div>

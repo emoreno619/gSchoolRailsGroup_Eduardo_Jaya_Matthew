@@ -49,6 +49,6 @@ Rails.application.configure do
     :enable_starttls_auto => true, # detects and uses STARTTLS
     :user_name => Rails.application.secrets[:MANDRILL_USERNAME],
     :password  => Rails.application.secrets[:MANDRILL_PASSWORD], # SMTP password is any valid API key
-
+   }
   
 end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
  resources :locations
  resources :foods
 
+ resources :resets, only: [:new, :edit, :create, :update]
+
  #             Prefix Verb   URI Pattern                                  Controller#Action
  ##     user_locations GET    /users/:user_id/locations(.:format)          locations#index
  ##                    POST   /users/:user_id/locations(.:format)          locations#create

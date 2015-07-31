@@ -1,5 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "jayadarby@gmail.com"
   default_url_options[:host] = "localhost:3000"
-  layout 'mailer'
 end

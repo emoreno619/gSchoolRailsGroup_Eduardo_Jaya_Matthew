@@ -1,0 +1,16 @@
+<div class="col-sm-offset-3">
+  <div class="col-sm-7">
+    <div class="well">
+      <h2 class="text-center">Change Your Password</h2><br>
+      <%= form_for :user, url:reset_path(@user.reset_token), method: :patch do |f| %>
+        <%= render partial: "shared/errors", locals:{instance: @user} %>
+        <div class="form-group">
+          <%= f.label :password, class:"control-label" %>
+          <%= f.password_field :password, class:"form-control" %>
+        </div>
+
+        <%= f.submit "Reset Password", class:"btn btn-block btn-success text-center" %>
+      <% end %>
+    </div>
+  </div>
+</div>
