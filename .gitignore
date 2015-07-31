@@ -12,4 +12,4 @@
 !/log/.keep
 /tmp
 
-sercrets.yml
+config/secrets.yml
