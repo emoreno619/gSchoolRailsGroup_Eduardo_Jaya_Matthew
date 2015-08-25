@@ -21,5 +21,6 @@ Matthew: Google Maps API, routes, UI, product concept
 
 Jaya: routes, authentication, CSS and UI
 
+<img src="./public/rsz_white_board.jpg" alt="">
 
 Note to self: locationuser and fooduser tables/relations ARE the FAVORITES
