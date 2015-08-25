@@ -1,3 +1,4 @@
+<img src="./public/screenshotwpics.png" alt="">
 <img src="./app/assets/images/screenshot.png" alt="">
 
 [app in action](https://powerful-beyond-3469.herokuapp.com/#)
