@@ -25,6 +25,6 @@ Jaya: routes, authentication, CSS and UI
 
 ###Model Schema and Relations
 
-<img src="./public/rsz_white_board.jpg" alt="">
+<img src="./public/white_board2.jpg" alt="">
 
 Note to self: locationuser and fooduser tables/relations ARE the FAVORITES
