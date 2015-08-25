@@ -16,7 +16,9 @@ However, this app succeeds as a Ruby on Rails full CRUD application, backed by a
 ##Rough distribution of individual responsibilities:
 
 Eduardo: db architecture, model schema, web scraping, Google Maps API
+
 Matthew: Google Maps API, routes, UI
+
 Jaya: routes, authentication, CSS and UI
 
 
