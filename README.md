@@ -1,4 +1,4 @@
-Connects users to vendors of gluten free and vegan foods
+#Connects users to vendors of gluten free and vegan foods
 
 <img src="./public/screenshotwpics.png" alt="">
 <img src="./app/assets/images/screenshot.png" alt="">
